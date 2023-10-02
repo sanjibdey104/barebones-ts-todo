@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./index.scss";
 
 type TodoItem = {
@@ -13,6 +13,20 @@ function App() {
   const [showActionsGuide, setShowActionsGuide] = useState<Boolean>(false);
   const [showTrashedList, setShowTrashedList] = useState<Boolean>(false);
 
+  useEffect(() => {
+    // is todo list is already stored in localStorage, fetch and update the state
+    if (localStorage.getItem("barebonesTodoList")) {
+      let stringifiedList = localStorage.getItem("barebonesTodoList");
+
+      if (stringifiedList) {
+        console.log("stringifiedList: ", stringifiedList);
+
+        let parsedList = JSON.parse(stringifiedList);
+        setTodoList(parsedList);
+      }
+    }
+  }, []);
+
   const renderTaskActionBtn = (todoItem: TodoItem, statusToUpdate: string) => {
     return (
       <button
@@ -24,6 +38,10 @@ function App() {
               : prevTodoItem;
           });
           setTodoList(updatedTodoList);
+          localStorage.setItem(
+            "barebonesTodoList",
+            JSON.stringify(updatedTodoList)
+          );
         }}
       >
         {statusToUpdate === "todo" ? "🥚" : ""}
@@ -52,14 +70,19 @@ function App() {
         <button
           className="add-todo-control"
           onClick={() => {
-            setTodoList([
+            let formattedTodo = [
               ...todoList,
               {
                 id: Math.floor(Math.random() * Date.now()).toString(16),
                 text: todoText,
                 status: "todo",
               },
-            ]);
+            ];
+            setTodoList(formattedTodo);
+            localStorage.setItem(
+              "barebonesTodoList",
+              JSON.stringify(formattedTodo)
+            );
             setTodoText("");
           }}
           disabled={!todoText}
