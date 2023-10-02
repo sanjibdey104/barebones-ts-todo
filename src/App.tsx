@@ -88,7 +88,7 @@ function App() {
         </ul>
       </div>
 
-      <div className="list-grid">
+      <div className="task-lists-grid">
         <div className="todo-list-wrapper task-list-wrapper">
           <h5 className="section-header">procrastinating:</h5>
 
