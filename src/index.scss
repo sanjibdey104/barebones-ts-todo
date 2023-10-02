@@ -1,0 +1,54 @@
+:root {
+  //   --font-primary: "Montserrat", sans-serif;
+  //   --font-secondary: "Karla", sans-serif;
+  --bg-light: #fbfbfb;
+  --mobile-nav-bg: #000000;
+  --mobile-nav-text: #ffffffda;
+
+  --accent-color-primary: #1976d2;
+  --accent-color-secondary: #ffc800;
+
+  --fg-bold: #212121;
+  --fg-light: #424242;
+  --fg-lighter: #616161;
+  --fg-lightest: #adb5bd;
+
+  --box-shadow: rgba(50, 50, 90, 0.25) 0px 8px 10px -5px,
+    rgba(0, 0, 0, 0.2) 0px 8px 10px -8px,
+    rgba(10, 40, 50, 0.2) 0px -2px 5px 0px inset;
+  --hover-box-shadow: rgba(50, 50, 90, 0.25) 0px 3px 5px -3px,
+    rgba(0, 0, 0, 0.2) 0px 3px 5px -3px,
+    rgba(10, 40, 50, 0.2) 0px -1px 3px 0px inset;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+
+  line-height: 1.5;
+  background-color: var(--bg-light);
+  font-family: var(--font-primary);
+  color: var(--fg-light);
+}
+
+#root {
+  //   max-width: 1280px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
