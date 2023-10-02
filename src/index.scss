@@ -24,6 +24,7 @@
 html {
   box-sizing: border-box;
   font-size: 100%;
+  font-family: "JetBrains Mono", monospace;
 }
 
 *,
@@ -51,4 +52,178 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+
+  .app-header {
+    font-size: 24px;
+  }
+
+  ul {
+    list-style: none;
+  }
+}
+
+form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+
+  input.todo-input {
+    border: 1px solid;
+    padding: 8px 12px;
+    border-radius: 4px;
+
+    &::placeholder {
+      font-weight: 100;
+      color: var(--fg-lightest);
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      border: 1px solid green;
+      outline: 1px solid green;
+    }
+  }
+
+  .add-todo-control {
+    height: 100%;
+    border: 0;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #adb5bd;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.task-actions-guide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  position: absolute;
+  left: 0;
+
+  .guide-header {
+    display: flex;
+    gap: 5px;
+  }
+
+  ul.guide-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 0;
+    height: 0;
+    overflow: hidden;
+
+    transition: all 300ms ease;
+
+    &.show {
+      width: fit-content;
+      height: fit-content;
+
+      border: 1px dashed;
+      padding: 5px;
+    }
+
+    li {
+      width: fit-content;
+      font-size: 12px;
+    }
+  }
+}
+
+.list-grid {
+  display: flex;
+  gap: 48px;
+}
+
+.task-list-wrapper {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &.todo-list-wrapper {
+    .section-header {
+      color: #e6b403;
+    }
+  }
+
+  &.in-progress-list-wrapper {
+    .section-header {
+      color: rgb(2, 160, 2);
+    }
+  }
+
+  &.done-list-wrapper {
+    .section-header {
+      color: #1976d2;
+    }
+  }
+
+  .section-header {
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: underline;
+  }
+
+  .no-data-text {
+    font-size: 12px;
+    font-weight: 200;
+  }
+
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+
+      .task-text {
+        width: fit-content;
+        flex: 1;
+        font-size: 14px;
+      }
+
+      .task-actions {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        button {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.trashed-section {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
