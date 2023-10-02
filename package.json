@@ -3,7 +3,7 @@
   "private": false,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/sanjibdey104/barebones-ts-todo.git",
+  "homepage": "https://sanjibdey104.github.io/barebones-ts-todo/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
