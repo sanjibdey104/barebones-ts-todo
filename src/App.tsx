@@ -9,50 +9,29 @@ type TodoItem = {
 
 function App() {
   const [todoText, setTodoText] = useState<string>("");
-  const [todoList, setTodoList] = useState<Array<TodoItem>>([
-    {
-      id: "lol",
-      text: "hey, do something",
-      status: "todo",
-    },
-  ]);
+  const [todoList, setTodoList] = useState<Array<TodoItem>>([]);
   const [showActionsGuide, setShowActionsGuide] = useState<Boolean>(false);
+  const [showTrashedList, setShowTrashedList] = useState<Boolean>(false);
 
-  const handleMarkAsTodo = (targetTodo: TodoItem) => {
-    let updatedTodoList = todoList.map((prevTodoItem) => {
-      if (prevTodoItem.id === targetTodo.id) {
-        return { ...prevTodoItem, status: "todo" };
-      }
-      return prevTodoItem;
-    });
-    setTodoList(updatedTodoList);
-  };
-
-  const handleMarkAsInProgress = (targetTodo: TodoItem) => {
-    let updatedTodoList = todoList.map((prevTodoItem) => {
-      if (prevTodoItem.id === targetTodo.id) {
-        return { ...prevTodoItem, status: "in_progress" };
-      }
-      return prevTodoItem;
-    });
-    setTodoList(updatedTodoList);
-  };
-
-  const handleMarkAsDone = (targetTodo: TodoItem) => {
-    let updatedTodoList = todoList.map((prevTodoItem) => {
-      if (prevTodoItem.id === targetTodo.id) {
-        return { ...prevTodoItem, status: "done" };
-      }
-      return prevTodoItem;
-    });
-    setTodoList(updatedTodoList);
-  };
-
-  const handleDeleteTodo = (targetTodo: TodoItem) => {
-    let updatedTodoList = todoList.filter(
-      (prevTodoItem) => prevTodoItem.id !== targetTodo.id
+  const renderTaskActionBtn = (todoItem: TodoItem, statusToUpdate: string) => {
+    return (
+      <button
+        className="mark-as-in-progress"
+        onClick={() => {
+          let updatedTodoList = todoList.map((prevTodoItem) => {
+            return prevTodoItem.id === todoItem.id
+              ? { ...prevTodoItem, status: statusToUpdate }
+              : prevTodoItem;
+          });
+          setTodoList(updatedTodoList);
+        }}
+      >
+        {statusToUpdate === "todo" ? "🥚" : ""}
+        {statusToUpdate === "in_progress" ? "🐣" : ""}
+        {statusToUpdate === "done" ? "🐥" : ""}
+        {statusToUpdate === "delete" ? "🗑️" : ""}
+      </button>
     );
-    setTodoList(updatedTodoList);
   };
 
   return (
@@ -113,7 +92,8 @@ function App() {
         <div className="todo-list-wrapper task-list-wrapper">
           <h5 className="section-header">procrastinating:</h5>
 
-          {todoList.length !== 0 ? (
+          {todoList.length !== 0 &&
+          todoList.some((todoItem) => todoItem.status === "todo") ? (
             <ul className="todo-list task-list">
               {todoList
                 .filter((todoItem) => todoItem.status === "todo")
@@ -122,32 +102,9 @@ function App() {
                     <span className="task-text">{todoItem.text}</span>
 
                     <div className="task-actions">
-                      <button
-                        className="mark-as-in-progress"
-                        onClick={() => {
-                          handleMarkAsInProgress(todoItem);
-                        }}
-                      >
-                        🐣
-                      </button>
-
-                      <button
-                        className="mark-as-done"
-                        onClick={() => {
-                          handleMarkAsDone(todoItem);
-                        }}
-                      >
-                        🐥
-                      </button>
-
-                      <button
-                        className="remove-todo-item"
-                        onClick={() => {
-                          handleDeleteTodo(todoItem);
-                        }}
-                      >
-                        🗑️
-                      </button>
+                      {renderTaskActionBtn(todoItem, "in_progress")}
+                      {renderTaskActionBtn(todoItem, "done")}
+                      {renderTaskActionBtn(todoItem, "delete")}
                     </div>
                   </li>
                 ))}
@@ -163,40 +120,19 @@ function App() {
           {todoList.length !== 0 &&
           todoList.some((todoItem) => todoItem.status === "in_progress") ? (
             <ul className="in-progress-list task-list">
-              {todoList.map((todoItem) => (
-                <li className="task-item">
-                  <span className="task-text">{todoItem.text}</span>
+              {todoList
+                .filter((todoItem) => todoItem.status === "in_progress")
+                .map((todoItem) => (
+                  <li className="task-item">
+                    <span className="task-text">{todoItem.text}</span>
 
-                  <div className="task-actions">
-                    <button
-                      className="mark-as-todo-control"
-                      onClick={() => {
-                        handleMarkAsTodo(todoItem);
-                      }}
-                    >
-                      🥚
-                    </button>
-
-                    <button
-                      className="mark-as-done-control"
-                      onClick={() => {
-                        handleMarkAsDone(todoItem);
-                      }}
-                    >
-                      🐥
-                    </button>
-
-                    <button
-                      className="remove-todo-item"
-                      onClick={() => {
-                        handleDeleteTodo(todoItem);
-                      }}
-                    >
-                      🗑️
-                    </button>
-                  </div>
-                </li>
-              ))}
+                    <div className="task-actions">
+                      {renderTaskActionBtn(todoItem, "todo")}
+                      {renderTaskActionBtn(todoItem, "done")}
+                      {renderTaskActionBtn(todoItem, "delete")}
+                    </div>
+                  </li>
+                ))}
             </ul>
           ) : (
             <p className="no-data-text">nothing in progress</p>
@@ -209,40 +145,19 @@ function App() {
           {todoList.length !== 0 &&
           todoList.some((todoItem) => todoItem.status === "done") ? (
             <ul className="done-list task-list">
-              {todoList.map((todoItem) => (
-                <li className="task-item">
-                  <span className="task-text">{todoItem.text}</span>
+              {todoList
+                .filter((todoItem) => todoItem.status === "done")
+                .map((todoItem) => (
+                  <li className="task-item">
+                    <span className="task-text">{todoItem.text}</span>
 
-                  <div className="task-actions">
-                    <button
-                      className="mark-as-todo-control"
-                      onClick={() => {
-                        handleMarkAsTodo(todoItem);
-                      }}
-                    >
-                      🥚
-                    </button>
-
-                    <button
-                      className="mark-as-in-progress-control"
-                      onClick={() => {
-                        handleMarkAsInProgress(todoItem);
-                      }}
-                    >
-                      🐣
-                    </button>
-
-                    <button
-                      className="remove-todo-item"
-                      onClick={() => {
-                        handleDeleteTodo(todoItem);
-                      }}
-                    >
-                      🗑️
-                    </button>
-                  </div>
-                </li>
-              ))}
+                    <div className="task-actions">
+                      {renderTaskActionBtn(todoItem, "todo")}
+                      {renderTaskActionBtn(todoItem, "in_progress")}
+                      {renderTaskActionBtn(todoItem, "delete")}
+                    </div>
+                  </li>
+                ))}
             </ul>
           ) : (
             <p className="no-data-text">nothing done</p>
@@ -251,7 +166,32 @@ function App() {
       </div>
 
       <div className="trashed-section">
-        <h5>🗑️ trashed</h5>
+        <ul className={`trashed-todo-list ${showTrashedList ? "show" : ""}`}>
+          {todoList.length !== 0 &&
+          todoList.some((todoItem) => todoItem.status === "delete") ? (
+            todoList
+              .filter((todoItem) => todoItem.status === "delete")
+              .map((todoItem) => (
+                <li className="task-item trashed-todo-item">
+                  <span className="task-text">{todoItem.text}</span>
+                  <div className="task-actions">
+                    {renderTaskActionBtn(todoItem, "todo")}
+                  </div>
+                </li>
+              ))
+          ) : (
+            <p className="no-data-text">nothing in trash</p>
+          )}
+        </ul>
+
+        <h5
+          className="trashed-section-header"
+          onClick={() => {
+            setShowTrashedList(!showTrashedList);
+          }}
+        >
+          🗑️ trashed
+        </h5>
       </div>
     </div>
   );

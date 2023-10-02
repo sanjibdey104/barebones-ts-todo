@@ -1,24 +1,110 @@
 :root {
-  //   --font-primary: "Montserrat", sans-serif;
-  //   --font-secondary: "Karla", sans-serif;
-  --bg-light: #fbfbfb;
-  --mobile-nav-bg: #000000;
-  --mobile-nav-text: #ffffffda;
+  // gray pallet
+  --gray-900: #1f2933;
+  --gray-800: #323f4b;
+  --gray-700: #3e4c59;
+  --gray-600: #52606d;
+  --gray-500: #616e7c;
+  --gray-400: #7b8794;
+  --gray-300: #9aa5b1;
+  --gray-200: #cbd2d9;
+  --gray-100: #e4e7eb;
+  --gray-75: #ebeef1;
+  --gray-50: #f1f4f8;
+  --gray-10: #f8fafc;
+  --gray-00: #ffffff;
+  --gray-hover: #f8fafc;
 
-  --accent-color-primary: #1976d2;
-  --accent-color-secondary: #ffc800;
+  // yellow pallet
+  --yellow-700: #a27c1a;
+  --yellow-600: #c29a2e;
+  --yellow-500: #e9b949;
+  --yellow-300: #f9da8b;
+  --yellow-100: #fff3eb;
+  --yellow-50: #fffaeb;
 
-  --fg-bold: #212121;
-  --fg-light: #424242;
-  --fg-lighter: #616161;
-  --fg-lightest: #adb5bd;
+  // pink pallet
+  --pink-300: #e289f2;
 
-  --box-shadow: rgba(50, 50, 90, 0.25) 0px 8px 10px -5px,
-    rgba(0, 0, 0, 0.2) 0px 8px 10px -8px,
-    rgba(10, 40, 50, 0.2) 0px -2px 5px 0px inset;
-  --hover-box-shadow: rgba(50, 50, 90, 0.25) 0px 3px 5px -3px,
-    rgba(0, 0, 0, 0.2) 0px 3px 5px -3px,
-    rgba(10, 40, 50, 0.2) 0px -1px 3px 0px inset;
+  // orange pallet
+  --orange-600: #de3a11;
+  --orange-500: #f35627;
+  --orange-400: #f9703e;
+  --orange-300: #e88924;
+  --orange-200: #ffb088;
+  --orange-50: #fff3eb;
+
+  // red pallet
+  --red-700: #911111;
+  --red-600: #a61b1b;
+  --red-500: #ba2525;
+  --red-400: #d64545;
+  --red-300: #e55a6a;
+  --red-200: #ec6666;
+  --red-100: #facdcd;
+  --red-50: #ffeeee;
+
+  // green pallet
+  --green-900: #005907;
+  --green-700: #207227;
+  --green-600: #2f8132;
+  --green-500: #3f9142;
+  --green-400: #57ae5b;
+  --green-300: #7bc47f;
+  --green-100: #c1eac5;
+  --green-50: #e3f9e5;
+
+  // violet pallet
+  --violet-500: #7f4cc7;
+  --violet-400: #8f64ce;
+  --violet-50: #f6f2fa;
+
+  // lavender pallet
+  --lavender-200: #f5f7fa;
+  --lavender-100: #f8fafc;
+
+  // indigo pallet
+  --indigo-700: #3047bb;
+  --indigo-600: #3956c6;
+  --indigo-500: #4d67c7;
+  --indigo-300: #708ae7;
+  --indigo-50: #edf2fd;
+  --indigo-300: #7792e4;
+
+  // blue pallet
+  --blue-900: #002651;
+  --blue-800: #034077;
+  --blue-700: #005ca4;
+  --blue-600: #0077cc;
+  --blue-500: #1292ee;
+  --blue-400: #57b0fb;
+  --blue-300: #a0d4ff;
+  --blue-200: #d6edff;
+  --blue-100: #f3fbff;
+
+  // cyan pallet
+  --cyan-500: #78d2de;
+
+  //links pallet
+  --link-blue: #007bff;
+
+  //border radius
+  --border-radius-primary: 4px;
+
+  //box shadow
+  --box-shadow-primary: 0px 0px 8px rgba(0, 0, 0, 0.1),
+    0px 16px 40px rgba(9, 30, 66, 0.2);
+  --box-shadow-secondary: 1px 1px 4px rgba(0, 0, 0, 0.08),
+    0px 2px 16px rgba(9, 30, 66, 0.04);
+  --box-shadow-200: 0px 2px 6px rgba(9, 30, 66, 0.04),
+    0px 8px 12px rgba(9, 30, 66, 0.08);
+  --box-shadow-top: 0px -2px 6px rgba(9, 30, 66, 0.06);
+  --btn-shadow-primary: 0px 2px 6px rgba(9, 30, 66, 0.04),
+    0px 8px 12px rgba(9, 30, 66, 0.08);
+  --box-shadow-card: 0px 2px 4px rgba(9, 30, 66, 0.04),
+    0px 2px 12px rgba(9, 30, 66, 0.06);
+  --box-shadow-100: drop-shadow(0px 2px 6px rgba(9, 30, 66, 0.04))
+    drop-shadow(0px 8px 12px rgba(9, 30, 66, 0.08));
 }
 
 html {
@@ -40,9 +126,8 @@ body {
   height: 100vh;
 
   line-height: 1.5;
-  background-color: var(--bg-light);
-  font-family: var(--font-primary);
-  color: var(--fg-light);
+  background-color: var(--gray-00);
+  color: var(--gray-900);
 }
 
 #root {
@@ -71,6 +156,11 @@ body {
   ul {
     list-style: none;
   }
+
+  .no-data-text {
+    font-size: 12px;
+    font-weight: 200;
+  }
 }
 
 form {
@@ -83,18 +173,19 @@ form {
     border: 1px solid;
     padding: 8px 12px;
     border-radius: 4px;
+    border: 1px solid var(--gray-900);
 
     &::placeholder {
       font-weight: 100;
-      color: var(--fg-lightest);
+      color: var(--gray-200);
     }
 
     &:hover,
     &:focus,
     &:focus-within,
     &:focus-visible {
-      border: 1px solid green;
-      outline: 1px solid green;
+      border: 1px solid var(--gray-500);
+      outline: 1px solid var(--gray-500);
     }
   }
 
@@ -103,7 +194,7 @@ form {
     border: 0;
     padding: 8px;
     border-radius: 4px;
-    background-color: #adb5bd;
+    background-color: var(--gray-300);
     cursor: pointer;
 
     &:disabled {
@@ -117,6 +208,7 @@ form {
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+  z-index: 2;
 
   position: absolute;
   left: 0;
@@ -124,6 +216,12 @@ form {
   .guide-header {
     display: flex;
     gap: 5px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: var(--gray-500);
+    }
   }
 
   ul.guide-body {
@@ -158,26 +256,26 @@ form {
 }
 
 .task-list-wrapper {
-  width: 280px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 
   &.todo-list-wrapper {
     .section-header {
-      color: #e6b403;
+      color: var(--yellow-500);
     }
   }
 
   &.in-progress-list-wrapper {
     .section-header {
-      color: rgb(2, 160, 2);
+      color: var(--green-500);
     }
   }
 
   &.done-list-wrapper {
     .section-header {
-      color: #1976d2;
+      color: var(--blue-500);
     }
   }
 
@@ -185,11 +283,6 @@ form {
     font-size: 16px;
     text-transform: uppercase;
     text-decoration: underline;
-  }
-
-  .no-data-text {
-    font-size: 12px;
-    font-weight: 200;
   }
 
   .task-list {
@@ -205,8 +298,14 @@ form {
 
       .task-text {
         width: fit-content;
+        max-width: 150px;
         flex: 1;
         font-size: 14px;
+        text-align: left;
+
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       .task-actions {
@@ -226,4 +325,56 @@ form {
   position: absolute;
   bottom: 0;
   right: 0;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+
+  .trashed-section-header {
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: var(--gray-500);
+    }
+  }
+
+  ul {
+    width: 0;
+    height: 0;
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    transition: all 300ms;
+
+    &.show {
+      width: fit-content;
+      height: fit-content;
+      padding: 5px;
+      border: 1px dashed var(--gray-900);
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 14px;
+
+      .task-text {
+        max-width: 150px;
+
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
 }
